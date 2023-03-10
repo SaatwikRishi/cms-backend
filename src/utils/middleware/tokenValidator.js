@@ -14,7 +14,6 @@ const validateToken = async (req, res, next) => {
     req.user = response.data.data
     next()
   } catch (error) {
-    console.log(error)
     if (error instanceof AxiosError) {
       res.status(error.response.status).json({
         message:
