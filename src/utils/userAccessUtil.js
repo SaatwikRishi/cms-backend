@@ -15,8 +15,7 @@ const userHasAccessToCollection = async (user, collectionId) => {
     throw new HttpError(401, 'There is no collections by this user')
   }
   const mappedCollections = collections.map((e) => e.dataValues)
-  console.log(mappedCollections)
-  console.log(user.id)
+
   const collection = mappedCollections.find((e) => e.user_id === user.id)
 
   if (!collection) {

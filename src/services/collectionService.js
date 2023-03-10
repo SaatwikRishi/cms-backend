@@ -5,7 +5,6 @@ const HttpError = require('../utils/errors/httpError')
 
 const createCollection = async (name, user) => {
   try {
-    console.log(user)
     const dbResponse = await db.ContentTypes.create({
       name,
       user_id: user.id
@@ -22,19 +21,13 @@ const createCollection = async (name, user) => {
 }
 
 const getAllCollections = async (user) => {
-  console.log(user)
   const dbResponse = await db.ContentTypes.findAll({
     subQuery: false,
-    attributes: [
-      'id', 'name'
-
-    ],
+    attributes: ['id', 'name'],
     include: [
       {
         model: db.ContentEntries
-
       }
-
     ],
     where: {
       user_id: user.id
