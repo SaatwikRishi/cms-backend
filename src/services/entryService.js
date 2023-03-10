@@ -21,6 +21,9 @@ const createEntryForCollection = async (collectionId, fields, user) => {
       content_type_id: collectionId
     }
   })
+  if (!dbFields || dbFields.length === 0) {
+    throw new HttpError(404, 'No fields')
+  }
 
   const finalJsonValues = verifyDBFields(dbFields, fields)
   const dbResponse = await db.ContentEntries.create({

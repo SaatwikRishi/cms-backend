@@ -54,7 +54,7 @@ const updateField = async (id, name, user) => {
   })
 
   if (recordsExists) {
-    throw new HttpError(400, 'Cannot update field name, records already exist')
+    throw new HttpError(400, 'Cannot update field name, records for this field exists. Please delete the records first.')
   }
 
   const dbResponse = await db.ContentFields.update(
