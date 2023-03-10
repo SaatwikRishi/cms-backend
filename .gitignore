@@ -2,3 +2,4 @@ node_modules
 database/config
 coverage
 .vscode
+.env
