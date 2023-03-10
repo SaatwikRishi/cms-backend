@@ -23,11 +23,15 @@ const schemas = {
     collectionId: Joi.number().required(),
     fields: Joi.object().required()
   }),
-  modifyEntry: Joi.object({}),
+  modifyEntry: Joi.object({}).options({
+    allowUnknown: true
+  }),
   deleteEntryParams: Joi.object({
     id: Joi.number().required()
   }),
-  patchField: Joi.object({})
+  patchField: Joi.object({}).options({
+    allowUnknown: true
+  })
 
 }
 const REQ_PARAMTERS = {

@@ -8,6 +8,7 @@ const handleRouteSuccess = (response, message, data, status = 200) => {
 }
 
 const handleRouteError = (error, response) => {
+  console.log(error)
   if (error instanceof HttpError) {
     response.status(error.code).json({
       message: error.message

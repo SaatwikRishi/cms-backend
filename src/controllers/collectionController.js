@@ -3,7 +3,7 @@ const collectionService = require('../services/collectionService')
 const createCollection = async (request, response) => {
   try {
     const { name } = request.body
-    const data = await collectionService.createCollection(name)
+    const data = await collectionService.createCollection(name, request.user)
     routeResponseHandler.handleRouteSuccess(
       response,
       'Collection created',
@@ -17,7 +17,7 @@ const createCollection = async (request, response) => {
 
 const getAllCollections = async (request, response) => {
   try {
-    const data = await collectionService.getAllCollections()
+    const data = await collectionService.getAllCollections(request.user)
     routeResponseHandler.handleRouteSuccess(response, 'All collections', data)
   } catch (error) {
     routeResponseHandler.handleRouteError(error, response)
@@ -28,7 +28,7 @@ const updateCollection = async (request, response) => {
   try {
     const { id } = request.params
     const { name } = request.body
-    const data = await collectionService.updateCollection(id, name)
+    const data = await collectionService.updateCollection(id, name, request.user)
     routeResponseHandler.handleRouteSuccess(
       response,
       'Collection updated',

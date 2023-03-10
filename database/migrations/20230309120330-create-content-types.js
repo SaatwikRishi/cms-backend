@@ -14,10 +14,10 @@ module.exports = {
         unique: true,
         allowNull: false
       },
-      // user_id: {
-      //   type: Sequelize.UUID,
-      //   allowNull: false
-      // },
+      user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

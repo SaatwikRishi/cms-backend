@@ -9,13 +9,17 @@ const validateToken = async (req, res, next) => {
     }
     const response = await axios.get(
       `${process.env.AUTH_SERVICE_URL}/auth/validate`,
-      { token }
+      { headers: { token } }
     )
-    req.user = response.data
+    req.user = response.data.data
     next()
   } catch (error) {
+    console.log(error)
     if (error instanceof AxiosError) {
-      res.status(error.response.status).json({ message: error.response.data.message ?? 'Internal server error' })
+      res.status(error.response.status).json({
+        message:
+      'ERROR'
+      })
     } else if (error instanceof HttpError) {
       res.status(error.code).json({ message: error.message })
     } else {

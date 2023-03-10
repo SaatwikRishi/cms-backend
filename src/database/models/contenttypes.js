@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   ContentTypes.init({
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    user_id: DataTypes.INTEGER
 
   }, {
     sequelize,

@@ -4,7 +4,7 @@ const createEntryForCollection = async (request, response) => {
   try {
     const { collectionId, fields } = request.body
 
-    const data = await entryService.createEntryForCollection(collectionId, fields)
+    const data = await entryService.createEntryForCollection(collectionId, fields, request.user)
     routeResponseHandler.handleRouteSuccess(
       response,
       'Entry created',
@@ -19,7 +19,7 @@ const createEntryForCollection = async (request, response) => {
 const getAllEntriesForCollection = async (request, response) => {
   try {
     const { id } = request.params
-    const data = await entryService.getAllEntriesForCollection(id)
+    const data = await entryService.getAllEntriesForCollection(id, request.user)
     routeResponseHandler.handleRouteSuccess(response, 'All entries', data)
   } catch (error) {
     routeResponseHandler.handleRouteError(error, response)
@@ -30,7 +30,7 @@ const modifyEntryForCollection = async (request, response) => {
   try {
     const { id } = request.params
     const fields = request.body
-    const data = await entryService.modifyEntryForCollection(id, fields)
+    const data = await entryService.modifyEntryForCollection(id, fields, request.user)
     routeResponseHandler.handleRouteSuccess(
       response,
       'Entry modified',
@@ -44,7 +44,7 @@ const modifyEntryForCollection = async (request, response) => {
 const deleteEntryForCollection = async (request, response) => {
   try {
     const { id } = request.params
-    const data = await entryService.deleteEntryForCollection(id)
+    const data = await entryService.deleteEntryForCollection(id, request.user)
     routeResponseHandler.handleRouteSuccess(
       response,
       'Entry deleted',

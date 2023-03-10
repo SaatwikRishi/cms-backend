@@ -10,11 +10,15 @@ const getUserCollections = async (user) => {
 }
 const userHasAccessToCollection = async (user, collectionId) => {
   const collections = await getUserCollections(user)
+
   if (!collections) {
-    throw new HttpError(401, 'You do not have access to this collection')
+    throw new HttpError(401, 'There is no collections by this user')
   }
   const mappedCollections = collections.map((e) => e.dataValues)
-  const collection = mappedCollections.find((e) => e.id === collectionId)
+  console.log(mappedCollections)
+  console.log(user.id)
+  const collection = mappedCollections.find((e) => e.user_id === user.id)
+
   if (!collection) {
     throw new HttpError(401, 'You do not have access to this collection')
   }
