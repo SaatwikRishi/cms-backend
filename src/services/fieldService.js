@@ -67,7 +67,7 @@ const updateField = async (id, name, user) => {
     }
   )
   if (dbResponse[0] === 0) {
-    throw new HttpError(404, 'Field not found')
+    throw new HttpError(404, 'The field was not found')
   }
   return dbResponse[1][0]
 }
