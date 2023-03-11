@@ -12,7 +12,7 @@ describe('Tests for user access util', () => {
     it('should throw an error when there is some error in the service', async () => {
       jest.spyOn(db.ContentTypes, 'findAll').mockRejectedValue(new Error())
       try {
-        await userAccessUtil.getUserCollections({ id: 1 })
+        await getUserCollections({ id: 1 })
       } catch (error) {
         expect(error).toBeInstanceOf(Error)
       }
@@ -21,15 +21,16 @@ describe('Tests for user access util', () => {
 
   describe('Tests for user has access to collection', () => {
     it('should return true if the user has access to the collection', async () => {
-      jest.spyOn(db.ContentTypes, 'findAll').mockResolvedValue([{ dataValues: { id: 1, name: 'test' } }])
+      jest.spyOn(db.ContentTypes, 'findAll').mockResolvedValue([{ dataValues: { user_id: 1, name: 'test' } }])
       const hasAccess = await userHasAccessToCollection(
         { id: 1 },
         1
       )
       expect(hasAccess).toEqual(true)
     })
+
     it('should throw an error if the user does not have access to the collection', async () => {
-      jest.spyOn(db.ContentTypes, 'findAll').mockResolvedValue([{ dataValues: { id: 2, name: 'test' } }])
+      jest.spyOn(db.ContentTypes, 'findAll').mockResolvedValue([{ dataValues: { user_id: 2, name: 'test' } }])
       try {
         await userHasAccessToCollection({ id: 1 }, 1)
       } catch (error) {

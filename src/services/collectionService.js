@@ -1,5 +1,4 @@
 const { UniqueConstraintError } = require('sequelize')
-const { Sequelize } = require('../database/models')
 const db = require('../database/models')
 const HttpError = require('../utils/errors/httpError')
 
